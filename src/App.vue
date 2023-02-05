@@ -13,7 +13,6 @@ export default {
 };
 </script>
 
-<
-    MainTabBarstyle>
+<style>
 @import "assets/css/base.css";
 </style>
