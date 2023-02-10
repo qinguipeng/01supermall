@@ -10,8 +10,9 @@ const Cart = () =>
     import ('views/cart/Cart')
 const Profile = () =>
     import ('views/profile/Profile')
-
-// 1. 安装VueRouter插件
+const Detail = () =>
+    import ('views/detail/Detail')
+    // 1. 安装VueRouter插件
 Vue.use(VueRouter)
 
 
@@ -35,7 +36,12 @@ const routes = [{
         path: '/profile',
         component: Profile,
     },
+    {
+        path: '/detail/:iid',
+        component: Detail,
+    },
 ]
+
 
 // 2. 创建VueRouter({})实例
 const router = new VueRouter({

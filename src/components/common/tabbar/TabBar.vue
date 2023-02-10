@@ -20,8 +20,9 @@ export default {
   bottom: 0;
 
   width: 100%;
-  height: 49px;
+  height: 65px;
   background-color: #f6f6f6;
   box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9;
 }
 </style>
