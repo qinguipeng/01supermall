@@ -23,6 +23,6 @@ export default {
   height: 65px;
   background-color: #f6f6f6;
   box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
-  z-index: 9;
+  z-index: 8;
 }
 </style>

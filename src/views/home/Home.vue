@@ -18,7 +18,7 @@
       :pull-up-load="true"
       @pullingUp="loadMore"
     >
-      <swiper @swiperImgLoded="swiperImgLoded"></swiper>
+      <home-swiper @swiperImgLoded="swiperImgLoded"> </home-swiper>
       <recommend-view
         :recommends="recommends"
         @RecomViewImgLoad="RecomViewImgLoad"
@@ -39,9 +39,9 @@
 <script>
 import RecommendView from "views/home/childComps/RecommendView.vue";
 import FeatureView from "views/home/childComps/FeatureView.vue";
+import HomeSwiper from "views/home/childComps/HomeSwiper.vue";
 
 import NavBar from "components/common/navbar/NavBar.vue";
-import Swiper from "components/common/swiper/Swiper.vue";
 import TabControl from "components/common/tabControl/TabControl.vue";
 import GoodsList from "components/content/goods/GoodsList.vue";
 import Scroll from "components/common/scroll/Scroll";
@@ -59,8 +59,8 @@ export default {
   components: {
     RecommendView,
     FeatureView,
+    HomeSwiper,
     NavBar,
-    Swiper,
     TabControl,
     GoodsList,
     Scroll,
@@ -234,8 +234,6 @@ export default {
   /* margin-top: 44px; */
 }
 #home .home-nav-bar {
-  display: flex;
-
   /* 使用浏览器原生滚动时 */
   /* position: fixed; */
   /* top: 0;

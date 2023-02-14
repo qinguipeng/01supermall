@@ -15,10 +15,9 @@ export default {
 
 <style scoped>
 .swiper-item {
-  flex: 1;
-  width: 600px;
-}
-.swiper-item img {
+  height: 100%;
   width: 100%;
+  background-color: red;
+  /* border: 2px solid yellowgreen; */
 }
 </style>

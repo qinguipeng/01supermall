@@ -1,9 +1,9 @@
 <template>
   <div class="goods-item" @click="itemClick">
-    <img :src="goodsItem.showLarge.img" alt="" @load="imgLoad" />
+    <img :src="showImge" alt="" @load="imgLoad" />
     <div class="goods-info">
       <p>{{ goodsItem.title }}</p>
-      <span class="price">{{ goodsItem.orgPrice }}</span>
+      <span class="price">{{ goodsItem.price }}</span>
       <span class="collect">{{ goodsItem.cfav }}</span>
     </div>
   </div>
@@ -21,14 +21,19 @@ export default {
       },
     },
   },
+  computed: {
+    showImge() {
+      return this.goodsItem.image || this.goodsItem.showLarge.img;
+    },
+  },
   methods: {
     imgLoad() {
-      // console.log("imgLoad");
       this.$bus.$emit("itemImgLoad");
     },
 
+    // 点击跳转到详情页
     itemClick() {
-      console.log("跳转到详情页");
+      // console.log("itemClick");
       this.$router.push("/detail/" + this.goodsItem.iid);
     },
   },

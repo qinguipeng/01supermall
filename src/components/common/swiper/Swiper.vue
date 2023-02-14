@@ -1,42 +1,17 @@
 <template>
   <div id="gp-swiper">
     <div class="swiper">
-      <swiper-item
-        ><img src="~assets/img/home/banner/01.jpg" alt="" @load="imgLoad"
-      /></swiper-item>
-      <swiper-item
-        ><img src="~assets/img/home/banner/02.jpg" alt="" @load="imgLoad"
-      /></swiper-item>
-      <swiper-item
-        ><img src="~assets/img/home/banner/03.jpg" alt="" @load="imgLoad"
-      /></swiper-item>
-      <swiper-item
-        ><img src="~assets/img/home/banner/04.jpg" alt="" @load="imgLoad"
-      /></swiper-item>
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
-import SwiperItem from "./SwiperItem.vue";
-
 export default {
   name: "Swiper",
-  components: { SwiperItem },
+  components: {},
   data() {
-    return {
-      isImgLoaded: false,
-    };
-  },
-  methods: {
-    // swipper图片加载完成，固定tabControll
-    imgLoad() {
-      // console.log("imgLoaded");
-      if (!this.isImgLoaded) {
-        this.$emit("swiperImgLoded");
-        this.isImgLoaded = true;
-      }
-    },
+    return {};
   },
 };
 </script>
@@ -44,25 +19,15 @@ export default {
 
 <style scoped>
 #gp-swiper {
-  position: relative;
-  /* margin-top: 44px; */
-  height: 205px;
   width: 100%;
-}
-/* 清除scrollbar */
-::-webkit-scrollbar {
-  width: 0 !important;
-}
-::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0;
+  /* height: 100%; */
+  border: 2px solid #333;
+  overflow-x: scroll;
 }
 .swiper {
-  position: absolute;
-  display: flex;
-
-  height: 100%;
-  width: 400%;
+  /* height: 100%; */
+  width: 1000%;
+  background-color: pink;
 }
 </style>
 
