@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "CartBottomBar",
+  name: "CheckButton",
   props: {
     isChecked: {
       type: Boolean,

@@ -32,6 +32,8 @@
     ></detail-bottom-bar>
 
     <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
+
+    <!-- <toast :message="message" :is-show="isShow" /> -->
   </div>
 </template>
 
@@ -49,6 +51,7 @@ import BackTop from "components/content/backTop/BackTop.vue";
 
 import Scroll from "components/common/scroll/Scroll.vue";
 import GoodsList from "components/content/goods/GoodsList.vue";
+// import Toast from "components/common/toast/Toast.vue";
 
 import {
   getDetail,
@@ -73,6 +76,7 @@ export default {
 
     Scroll,
     GoodsList,
+    // Toast,
   },
   data() {
     return {
@@ -86,6 +90,8 @@ export default {
       recommends: [],
       themeTopYs: [],
       isShowBackTop: true,
+      // message: "",
+      // isShow: false,
     };
   },
   created() {
@@ -196,7 +202,18 @@ export default {
 
       // 2.将商品添加到购物车;
       // this.$store.commit("addCart", product);
-      this.$store.dispatch("addCart", product);
+      this.$store.dispatch("addCart", product).then((res) => {
+        // console.log(res);
+        // this.message = res;
+        // this.isShow = true;
+        // setTimeout(() => {
+        //   this.isShow = false;
+        // }, 2000);
+
+        // 创建组件插件插件的方法
+        // console.log(this.$toast);
+        this.$toast.show(res, 2000);
+      });
     },
   },
 };
