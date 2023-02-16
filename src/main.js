@@ -4,6 +4,10 @@ import App from './App.vue'
 import router from './router'
 import store from "./store"
 
+import FastClick from 'fastclick'
+import VueLazyLoad from 'vue-lazyload'
+
+
 //导入index.js默认导出的对象
 import toast from 'components/common/toast'
 
@@ -16,6 +20,11 @@ Vue.prototype.$bus = new Vue()
 // 安装toast插件
 Vue.use(toast)
 
+
+// 解决移动端延迟300 ms fastclick方案
+FastClick.attach(document.body);
+// 使用vue图片懒加载vue-lazyload方案
+Vue.use(VueLazyLoad)
 
 new Vue({
     render: h => h(App),

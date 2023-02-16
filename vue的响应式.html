@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue的响应式</title>
+</head>
+
+<body>
+    <!-- 
+        理解Vue的响应式原理：回答两个问题
+    1. app.message修改数据，Vue内部是如何监听message数据的改变？
+    *Object.defineProperty(obj,key,{set(){在这监听},get(){}})===》监听对象属性改变
+    2. 当数据发生改变，Vue是如何知道通知那些人（对象），界面发生刷新？
+    *发布者订阅者模式
+
+
+-->
+
+    <div id="app">
+        <!--张三 -->
+        {{message}}
+
+        <!-- 李四  -->
+        {{message}}
+
+        <!-- 王五 -->
+        {{name}}
+    </div>
+
+
+
+    <script>
+        // vue实例内部实现相应式的原理
+
+        // 以data为例，其他实例内部的对象原理一样
+        const obj = {
+            message: '哈哈哈',
+            name: '杨磊'
+        }
+
+        // 取出obj内的所有key，进行遍历，并根据key对value进行value赋值
+        Object.keys(obj).forEach(key => {
+            let value = obj[key]
+
+            // *Object.defineProperty(obj,key,value)  ===》监听对象属性改变
+
+            Object.defineProperty(obj, key, {
+                set(newValue) {
+                    // set(){监听属性改变}=>obj.调用就执行set(){}
+                    console.log('监听' + key + '改变');
+
+                    // 监听到数据改变了，就要通知相应的对象(使用对象)，
+
+                    //比如 张三、李四、王五  都在用
+                    // 根据解析html代码，获取哪些人有用属性
+                    value = newValue
+                },
+                get() {
+                    // get() {监听属性对应的值}
+                    // console.log("获取" + key + "对应值");
+                    // 张三:get-->update
+                    // 李四：get-->update
+                    // 王五：get-->update
+
+                    return value
+
+                }
+            })
+        })
+
+
+        // *发布者订阅者模式
+        // 发布者：
+        class Dep {
+            constructor() {
+                this.subs = ["记录订阅者"]
+            }
+
+            // 增加订阅者的方法
+            addsub(watcher) {
+                this.subs.push(watcher)
+
+            }
+            notify() {
+                this.subs.forEach(item => {
+                    item.update()
+                })
+            }
+
+        }
+
+        // 订阅者：
+        class Watcher {
+            constructor(name) {
+                this.name = name
+            }
+            update() {
+                console.log(this.name + "发生update");
+            }
+        }
+
+        const dep = new Dep()
+
+
+        const w1 = new Watcher("张三")
+        dep.addsub(w1)
+        const w2 = new Watcher("李四")
+        dep.addsub(w2)
+        const w3 = new Watcher("王五")
+        dep.addsub(w3)
+
+
+        dep.notify()
+    </script>
+
+
+
+
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message: '哈哈哈',
+                name: '杨磊'
+            },
+
+        })
+    </script>
+
+</body>
+
+</html>

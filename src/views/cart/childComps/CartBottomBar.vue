@@ -86,7 +86,7 @@ export default {
 
     ToSettleClick() {
       if (!this.$store.state.cartList.find((item) => item.checked)) {
-        console.log(this.$toast);
+        // console.log(this.$toast);
         this.$toast.show("请选择要结算的商品", 2000);
       }
     },
