@@ -38,7 +38,12 @@ export default {
         payload.checked = false;
         state.cartList.push(payload);
 
+    },
+    GETBANNERLIST(state, payload) {
+        state.bannerList = payload
+            // console.log(payload);
     }
+
 
 
 

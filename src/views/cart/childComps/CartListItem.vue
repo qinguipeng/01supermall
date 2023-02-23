@@ -23,6 +23,7 @@
 
 <script>
 import CheckButton from "components/content/checkButton/CheckButton";
+import { mapState } from "vuex";
 
 export default {
   name: "CartListItem",

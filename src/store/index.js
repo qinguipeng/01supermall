@@ -10,7 +10,7 @@ import getters from './getter'
 Vue.use(Vuex)
 
 // 2.创建store 对象
-const state = { cartList: [] }
+const state = { cartList: [], bannerList: [] }
 
 const store = new Vuex.Store({
     state,

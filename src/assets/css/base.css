@@ -2,6 +2,15 @@
 
 /* :root：根元素==》html */
 
+
+/* 清除默认滚动条 */
+
+::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
 :root {
     /* 在css中定义的变量  29 30 36 行有实际使用*/
     --color-text: #666;

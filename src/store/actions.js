@@ -1,3 +1,7 @@
+// 请求轮播图数据
+import { getBannerImages } from "network/home";
+
+
 export default {
     addCart(context, payload) {
         return new Promise((resolve, reject) => {
@@ -22,5 +26,16 @@ export default {
             }
         })
 
+    },
+
+    // 获取bannerlist数据（轮播图）
+    // 1.Promise.then(()=>{})方法
+    getBnnerList({ commit }) {
+        getBannerImages().then((res) => {
+            if (res.code == 200) { commit("GETBANNERLIST", res.data) }
+        });
     }
+    // 2. async...await方法
+
+
 }

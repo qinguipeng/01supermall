@@ -10,6 +10,7 @@ module.exports = {
                 "assets": "@/assets",
                 "common": "@/common",
                 "components": "@/components",
+                "mock": "@/mock",
                 "network": "@/network",
                 "store": "@/store",
                 "router": "@/router",

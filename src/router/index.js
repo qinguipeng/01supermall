@@ -76,7 +76,7 @@ const router = new VueRouter({
 
 // 全局导航守卫使用,  .to就是前面定义的所有[{route1},{route2},/]路由对象
 router.beforeEach((to, from, next) => {
-        console.log(to, 'to是上面定义的一个个route对象');
+        // console.log(to, 'to是上面定义的一个个route对象');
         document.title = to.meta.title
         next()
     })

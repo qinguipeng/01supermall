@@ -9,7 +9,7 @@
         <li v-for="item in $store.state.cartList">{{ item }}</li>
       </ul> -->
 
-      <detail-swiper :top-images="topImages"></detail-swiper>
+      <new-detail-swiper :top-images="topImages"></new-detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
       <detail-goods-info
@@ -29,10 +29,9 @@
     <detail-bottom-bar
       @addCart="addToCart"
       class="detail-bottom-bar"
+      @toBuy="toCartBuy"
     ></detail-bottom-bar>
-
     <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
-
     <!-- <toast :message="message" :is-show="isShow" /> -->
   </div>
 </template>
@@ -40,7 +39,7 @@
 
 <script>
 import DetailNavBar from "views/detail/childComps/DetailNavBar";
-import DetailSwiper from "views/detail/childComps/DetailSwiper.vue";
+import NewDetailSwiper from "views/detail/childComps/NewDetailSwiper.vue";
 import DetailBaseInfo from "views/detail/childComps/DetailBaseInfo.vue";
 import DetailShopInfo from "views/detail/childComps/DetailShopInfo.vue";
 import DetailGoodsInfo from "views/detail/childComps/DetailGoodsInfo.vue";
@@ -65,7 +64,7 @@ export default {
   name: "Detail",
   components: {
     DetailNavBar,
-    DetailSwiper,
+    NewDetailSwiper,
     DetailBaseInfo,
     DetailShopInfo,
     DetailGoodsInfo,
@@ -172,7 +171,6 @@ export default {
 
     // 点击回到顶部
     backClick() {
-      // console.log("backClick");
       // console.log(this.$refs.scroll.message);
       // console.log(this.$refs.scroll.scroll.scrollTo);
       this.$refs.scroll.scrollTo(0, 0, 300); //在scroll.vue封装成方法
@@ -180,7 +178,7 @@ export default {
 
     //返回顶部按钮显示与隐藏 //tabControl是否吸顶效果（固定定位）
     contentScroll(position) {
-      console.log(position);
+      // console.log(position);
       // 返回顶部按钮显示与隐藏
       this.isShowBackTop = -position.y > 800;
 
@@ -189,13 +187,13 @@ export default {
       console.log(this.isTabControlFixed);
     },
 
+    // 点击加入购物车
     addToCart() {
       // 1.获取购物车需要展示的信息
       const product = {};
       product.image = this.topImages[0];
       product.title = this.goods.title;
       product.desc = this.goods.desc;
-
       product.price = this.goods.realPrice;
       product.iid = this.iid;
       // console.log(product);
@@ -214,6 +212,25 @@ export default {
         // console.log(this.$toast);
         this.$toast.show(res, 2000);
       });
+    },
+    // 点加入购物车，并跳转到结算界面
+    toCartBuy() {
+      // 1.获取购物车需要展示的信息
+      const product = {};
+      product.image = this.topImages[0];
+      product.title = this.goods.title;
+      product.desc = this.goods.desc;
+      product.price = this.goods.realPrice;
+      product.iid = this.iid;
+      // console.log(product);
+
+      // 2.将商品添加到购物车;
+      this.$store.dispatch("addCart", product).then((res) => {
+        // 创建组件插件插件的方法
+        // console.log(this.$toast);
+        this.$toast.show(res, 2000);
+      });
+      this.$router.push("/cart");
     },
   },
 };

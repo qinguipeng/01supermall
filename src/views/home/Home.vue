@@ -18,7 +18,9 @@
       :pull-up-load="true"
       @pullingUp="loadMore"
     >
-      <home-swiper @swiperImgLoded="swiperImgLoded"> </home-swiper>
+      <!-- swiper组件 -->
+      <new-home-swiper @swiperImgLoded="swiperImgLoded"> </new-home-swiper>
+
       <recommend-view
         :recommends="recommends"
         @RecomViewImgLoad="RecomViewImgLoad"
@@ -39,7 +41,7 @@
 <script>
 import RecommendView from "views/home/childComps/RecommendView.vue";
 import FeatureView from "views/home/childComps/FeatureView.vue";
-import HomeSwiper from "views/home/childComps/HomeSwiper.vue";
+import NewHomeSwiper from "views/home/childComps/NewHomeSwiper.vue";
 
 import NavBar from "components/common/navbar/NavBar.vue";
 import TabControl from "components/common/tabControl/TabControl.vue";
@@ -59,7 +61,8 @@ export default {
   components: {
     RecommendView,
     FeatureView,
-    HomeSwiper,
+
+    NewHomeSwiper,
     NavBar,
     TabControl,
     GoodsList,
@@ -69,7 +72,7 @@ export default {
 
   data() {
     return {
-      // [{}, {},{}, {}] 模拟以获取数据
+      // [{}, {},{}, {}] 模拟以获取数据，也可以mock
       recommends: [
         {
           link: "http://m.meilishuo.com/?acm=3.mce.2_10_1dggc.13730.0.ccy5br4OlfK0U.pos_0-m_313898-sd_119",
